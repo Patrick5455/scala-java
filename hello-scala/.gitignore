@@ -1,1 +1,7 @@
 target/
+*.bat
+sbt-dist/
+*.idea
+.idea/
+project/
+
