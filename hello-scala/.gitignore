@@ -4,4 +4,4 @@ sbt-dist/
 *.idea
 .idea/
 project/
-
+sbt/
