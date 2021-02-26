@@ -1,0 +1,5 @@
+package starters
+
+object Main {
+
+}
