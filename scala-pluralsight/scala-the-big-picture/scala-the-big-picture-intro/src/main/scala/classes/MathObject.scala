@@ -3,7 +3,6 @@ package classes
 object MathObject extends App {
 
   def sum(intA: Int, intB: Int) ={
-
     intA + intB
   }
 
