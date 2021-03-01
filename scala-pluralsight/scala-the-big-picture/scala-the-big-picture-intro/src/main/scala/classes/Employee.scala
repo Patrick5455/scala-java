@@ -8,7 +8,7 @@ class Employee {
 
   def getSalary() = salary
 
-  def setSalary(newSalary: Int) ={
+  def setSalary(newSalary: Int): Unit ={
     salary = newSalary
   }
 

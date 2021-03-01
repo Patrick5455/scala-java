@@ -1,10 +1,13 @@
 package classes
 
-object Main extends App {
+object EmployeeObject extends App {
   val john = new Employee
 
   john.setSalary(100)
   val johnSalary = john.getSalary()
-
   println(johnSalary)
+
+
+
+
 }
