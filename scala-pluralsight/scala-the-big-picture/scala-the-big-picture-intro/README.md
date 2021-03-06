@@ -12,3 +12,6 @@ There are 4 things to note about the companion object
 - live in same source file as Class
 
 - Access private members
+
+### Case Classes
+- They start with the case modifier

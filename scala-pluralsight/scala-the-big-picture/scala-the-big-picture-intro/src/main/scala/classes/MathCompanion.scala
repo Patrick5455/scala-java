@@ -1,10 +1,12 @@
 package classes
 
-object MathObject extends App {
+object MathCompanion {
 
   def sum(intA: Int, intB: Int) ={
     intA + intB
   }
+
+
 
   println(sum(5, 6))
 

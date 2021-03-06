@@ -3,12 +3,13 @@ package classes
 
 class Employee {
 
- private var salary = 100
+
+  private var salary = 100
 
 
-  def getSalary() = salary
+  def getSalary = salary
 
-  def setSalary(newSalary: Int): Unit ={
+  def setSalary(newSalary: Int) ={
     salary = newSalary
   }
 

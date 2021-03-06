@@ -1,5 +1,8 @@
 package classes
 
-class Person {
+class Person (firstName: String, lastName : String){
 
+  def getName() = {
+    firstName + " " + lastName
+  }
 }
