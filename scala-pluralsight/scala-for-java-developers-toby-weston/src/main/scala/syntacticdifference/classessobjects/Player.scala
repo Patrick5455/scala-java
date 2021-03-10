@@ -1,4 +1,4 @@
-package syntacticdifference
+package syntacticdifference.classessobjects
 
 import java.util.logging.Level
 
