@@ -1,5 +1,8 @@
 package syntacticdifference.inheritance
 
-class Item {
+abstract class Item {
+
+  //to be overriden
+  def price():Double
 
 }
