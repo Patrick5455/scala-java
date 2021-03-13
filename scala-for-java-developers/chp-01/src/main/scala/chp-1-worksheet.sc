@@ -283,5 +283,70 @@ goodWallet
 
 val allAmounts = walletA.partition(amt => amt.currency=="EUR")
 allAmounts // contains two lists
-allAmounts._1 //result form True
-allAmounts._2 // result from False
+allAmounts._1 //result form True -> val res27: List[Money] = List(Money(20,EUR))
+allAmounts._2 // result from False -> val res28: List[Money] = List(Money(15,USD), Money(20,USD))
+
+//DEALING WITH TUPLES
+/***
+ *Notice the return type of the partition result,
+ * (List[Money], List[Money]).
+ * Scala supports the concept of tuples. The preceeding parenthesis notation denotes
+ * a Tuple type, which is a part of the standard Scala library and useful to manipulate several elements at once
+ * without having to create a more complex type for encapsulating them.
+ * In our case, allAmounts is a Tuple2 pair containing two lists of Money.
+ * To access only one of the two collections, we just need to type the following expressions:
+ * */
+
+val euros = allAmounts._1
+euros //euros: List[Money] = List(Money(2,EUR),Money(75,EUR))
+val everythingButEuros = allAmounts._2
+everythingButEuros // everythingButEuros: List[Money] = List(Money(10,USD),Money(20,GBP),Money(
+//100,USD),Money(50,USD))
+/***
+ * A cleaner and more neutral syntax to achieve this is a one-liner, is the one that
+ * expresses the partition method without referrring to ._1 and ._2, as shown in the
+ * following code snippet:
+ * */
+
+val (eurosWallet, nonEurosWallet) = walletA.partition(amt => amt.currency == "EUR")
+eurosWallet
+nonEurosWallet
+
+//MAP
+/***
+ * Another elegant usage of tuples is related to the definition of a Map collection,
+ * another structure that is part of the Scala collections. Similar to Java, the Map collection
+ * stores key-value pairs.
+ *
+ * Populating a Map collection in Scala can be elegantly written as follows:
+ * */
+
+val wallet = Map("EUR" -> 10, "GBP" -> 20)
+wallet
+/***
+ * The "USD" -> 10 expressino is a convenient way of specifying a
+ * key-value pair and is equivalent to the definition of a
+ * Tuple2[String, Integer] object in this case, as illustrated directly
+ * in the REPL(which could infer the type automatically):
+ *
+ * */
+val tenDollars = "USD" -> 10
+tenDollars
+val tenDollars = ("USD", 10)
+tenDollars
+
+/***
+ * The process of adding and retrieving an element is very straightforward:
+ * */
+
+val updatedWallet = wallet + ("GBP" -> 20) //inserting an element into a map
+updatedWallet
+
+val someEuros = wallet("EUR")
+someEuros
+
+
+
+
+
+
