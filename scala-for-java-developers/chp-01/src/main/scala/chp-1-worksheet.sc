@@ -344,9 +344,100 @@ updatedWallet
 
 val someEuros = wallet("EUR")
 someEuros
+/***
+ * However not accessing an element that is not included in the
+ * Map collection will throw an exception as follows:
+ * */
 
+val somePounds = wallet("GBP")
+//java.util.NoSuchElementException: key not found: GBP stacktrace)
+//(followed by a full stacktrace)
 
+//INTRODUCING THE OPTION CONSTRUCT
+/***
+ * A safer way to retrieve an element from the Map collection that was introduced
+ * in the previous section is to invoke its `.get()` method, which will instead return an object
+ * of type `Option`.
+ *
+ * Basically, an Option type wraps a value into an object that can
+ * either return thr type `None` if the value is null, or `Some(value)` otherwose.
+ * */
 
+val mayBeSomeEuros = wallet.get("EUR")
+mayBeSomeEuros // mayBeSomeEuros: Option[Int] = Some(2)
+val mayBeSomePounds = wallet.get("GBP")
+mayBeSomePounds //mayBeSomePounds: Option[Int] = None
 
+/***
+ * A glimpse at pattern matching
+ * Avoiding the throwing of an exception makes it a convenient to continue handling
+ * the flow of an algorithm as an evaluated expression.
+ * It not only gives the programmer the freedom of sophisticated chaining
+ * of the `Option` values without having to check for the existence of a value,
+ * but also enables one ot handle the two different cases via `pattern matching`
+ * */
+
+val status = mayBeSomeEuros match {
+  case None => "Nothing of that currency"
+  case Some(value) => "I have "+value+" Euros"
+}
+status
+
+/***
+ * Pattern matching is an essential and powerful of the Scala language.
+ * We will look at more examples of it later on
+ * */
+
+/***
+ * The `filter` and `partition` methods were just two examples of the
+ * so-called "higher-order" functions on lists, since they operate on containers
+ * of collection types (such as lists, sets, and so on) rather than the types themselves.
+ * */
+
+//THE MAP METHOD
+/***
+ * Among the collections methods that cannot be overlooked lies the map
+ * method (not to be confused with the Map object). Basically, it applies a function
+ * to every element of a collection, but instead of returning `Uint` for the
+ * `foreach` method, it returns a collection of a similar container type
+ * (for example, a List will return a List of the same size) that contains the result of
+ * transforming each element through the function,
+ *
+ * Examples:
+ * */
+
+val mappedNumbers = List(1,2,3,4).map( num => num*2)
+mappedNumbers //val res41: List[Int] = List(2, 4, 6, 8)
+
+//In Scala, you may define standalone functions as follows:
+
+def increment = (x:Int) => x+1
+increment // val res42: Int => Int = <function>
+
+/***
+ * We have declared an increment function that takes an `Int` value as the input
+ * (denoted by x) and returns another Int value (x+1).
+ *
+ * The previous `List` transformation can rewritten slightly in a
+ * different manner as shown in the following code snippet:
+ * */
+
+List(1,2,3,4).map(increment) //like method reference in Java
+
+/***
+ * Using a bit of syntactic sugar, the .sign in the method call,
+ * as well as the parenthesis on the function parameter can be omitted for readability,
+ * which leads to the following concise one-liner
+ * */
+
+List(1,2,3,4) map increment
+
+/***
+ * Going back to our initial list of the Money amounts, we can, for example, transform them
+ * into strings as follows:
+ * */
+
+val printedAmounts = walletA map(mon => ""+mon.amount + " "+ mon.currency)
+printedAmounts //val res45: List[String] = List(20 EUR, 15 USD, 20 USD)
 
 
