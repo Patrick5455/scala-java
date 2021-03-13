@@ -1,3 +1,5 @@
+import scala.::
+import scala.collection.immutable.Nil
 
 class Money(var amount:Int)
 
@@ -100,9 +102,186 @@ case class Money( amount :Int=1, currency:String="USD") {
    *
    * Furthermore, it is generally considered a good practice to omit the return keyword since it is not mandatory.
    * */
-
 }
+
 
 //calling the method
 val balance = Money(12) + Money(34)
 println(balance.toString)
+
+
+//Collection
+val odds : List[Int] = List(1,3,5)
+val evens = List(2,4,6)
+
+odds
+evens
+
+/***
+ * Scala collections systematically distinguish between immutable and mutable collections,
+ * but encourage immutability by constructing immutable collections by default.
+ *
+ * They simulate additions, updates or removal by returning
+ * new collections from such operations instead of modifying them.
+ *
+ * One way to print out the numbers is that we can follow java's imperative style of
+ * programming and iterate over the collection by creating a for loop:
+ * */
+
+for(n <- odds) println("Odd number "+n) //similar to forEach lambda call in Java
+
+/***
+ * Another way to write the code in Scala (as well as many other languages on the JVM,
+ * such as Groovy, JRuby, or Jython) involves a more functional style, using lambda
+ * expressions (sometimes referred to as closures).
+ * In brief, lambdas are just functions that you can pass around as parameters.
+ * These functions take input parameters (in our case, the n integer) and return
+ * the last statement/line of the body.
+ *
+ * They are in the following form;
+ *
+ * functionName(input =>
+ *              body
+ *              )
+ *
+ * A typical example of lambda to iterate over the elements of the bnumbers
+ * list we have defined earlier is given as follows:
+ * */
+
+evens.foreach(num => println("even number "+num))
+
+/***
+ * Scala collections are, by default immutable. This is a very important aspect for
+ * making them behave as expected when dealing with multiprocessor architectures.
+ * */
+
+  //OPERATIONS ON COLLECTIONS
+val numbers = List(1,2,3,4,5,6)
+numbers
+val reversedList = numbers.reverse
+reversedList
+val onlyAFew = numbers drop 2 take 3
+onlyAFew
+
+/***
+ * The drop method indicates that we get rid of the first two elements
+ * of the list, and the take indicates that we keep only three elements
+ * from the result obtained after the drop method.
+ *
+ * The drop and take function is one of the many syntactic sugars that were added to Scala
+ * */
+
+/***
+ * Another way of writing elements in a given list
+ * is by using the :: method, generally referred to in
+ * Scala documentation as the "cons operator".
+ *
+ * This alternative syntax looks like the following expression
+ * */
+
+val numbers = 1 :: 2 :: 3 :: Nil
+
+/***
+ * THe Nil values:
+ * There is a simple rule in Scala that says that a method whose
+ * last character is a `:` (that is a colon) is applied on its
+ * right side rather than the left side
+ * (such a method is called a right-associative).
+ *
+ * So, the evaluation of 6 :: Nil is not equivalent to 6.::(Nil) in that case,
+ * but rather Nil.::(6).
+ *
+ * Example below
+ * */
+
+val simpleList = Nil.::(6)
+simpleList //simpleList: List[Int] = List(6)
+
+/***
+The evaluation of 5 :: 6 :: Nil is therefore done by applying the
+ :: method on the simpleList that we saw earlier, which  is List(6):
+ */
+
+val twoElementsList = List(6).::(5)
+twoElementsList
+
+/****
+ * In this case, 5 was appended before 6.
+ * Repeating this operation severla times will give you the final
+ * List(1,2,3,4,5,6).
+ *
+ * This convenient way of expressing lists is not just
+ * for simple values such as integers but can be applied to any type.
+ *
+ * Moreover, we cna concatenate two List instances by using the ::: method in a similar way
+ */
+
+val concatenatedList = simpleList ::: twoElementsList
+concatenatedList
+
+/***
+ * A List is heterogeneous
+ * */
+
+val things = List(0,1,true)
+things // List(AnyVal) = List(0,1,true)
+
+
+//COLLECTIONS OF MORE COMPLEX OBJECTS
+val walletA = twentyEuros :: fifteenDollars :: aUSDCopy :: Nil
+
+walletA
+val walletB = List(Money(10), Money(2, "EUR"),
+  Money(20, "GBP"))
+walletB
+
+//some List methods
+val firstMoneyInWalletA = walletA.head
+firstMoneyInWalletA
+
+val otherMoneyInWalletA = walletA.tail
+otherMoneyInWalletA
+
+/***
+ * FILTER AND PARTITION
+ *
+ * Filtering elements of a collection is one of the most commons
+ *
+ * example:
+ */
+
+val euroWallet = walletA.filter(_.currency == "EUR")
+euroWallet
+val usdWallet = walletB.filter(money => money.currency == "USD")
+usdWallet
+
+/***
+ * The parameter given to the filter method is a function
+ * that takes a Money item as the input and returns a Boolean value (that is, a predicate),
+ * which is the result of evaluating money.currency=="EUR".
+ *
+ * The filter method iterates over the collection items and applies the function to
+ * each element, keeping only the elements for which the function returns `True`.
+ *
+ * Lambda expressions are also referred to as `anonymous functions` because we could give
+ * any name we want to the input argument, for example, x instead of the `money` used previously,
+ * and still get the same output:
+ * */
+
+val goodWallet = walletA.filter(x => x.amount>100)
+goodWallet
+
+
+/***
+ * A filterNot method also exists to keep elements for which evaluation of the function
+ * returns `False`.
+ *
+ * Moreover, a partition method is available to combine both
+ * the `filter` and `filterNot` methods into one single call that returns two collections,
+ * one evaluating to True and the other to its complement, as shown in the following code snippet
+ * */
+
+val allAmounts = walletA.partition(amt => amt.currency=="EUR")
+allAmounts // contains two lists
+allAmounts._1 //result form True
+allAmounts._2 // result from False
