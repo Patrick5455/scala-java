@@ -74,3 +74,35 @@ aUSDCopy
  * when the mockup instances to be initialized have constructors with many fields
  * that are similar
  */
+
+
+//FUNCTIONS AND METHODS
+/****
+ * In Scala, we use the `def` keyword to define a class-method or a function,
+ *
+ */
+
+case class Money( amount :Int=1, currency:String="USD") {
+
+  def +(other: Money): Money = {
+    Money(amount + other.amount) // return keyword is implicit because the last line code is of the return type specified
+  }
+
+  /** *
+   * Notice that we can use + as a method name.
+   * We have also included the return type `Money` in the signature declaration,
+   * which is only optional since the type inference of Scala will deduct it,
+   * but including it explicitly is a good documentation pratice for
+   * public methods (and methods are public by default if no other scope is specified).
+   *
+   * Moreover, in Scala, the return word at the end of the method is optional,
+   * the last statement is always the one that is returned to the caller of the method,
+   *
+   * Furthermore, it is generally considered a good practice to omit the return keyword since it is not mandatory.
+   * */
+
+}
+
+//calling the method
+val balance = Money(12) + Money(34)
+println(balance.toString)
