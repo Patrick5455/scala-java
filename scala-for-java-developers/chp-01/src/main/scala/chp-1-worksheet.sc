@@ -440,4 +440,79 @@ List(1,2,3,4) map increment
 val printedAmounts = walletA map(mon => ""+mon.amount + " "+ mon.currency)
 printedAmounts //val res45: List[String] = List(20 EUR, 15 USD, 20 USD)
 
+//LOOKING AT STRING INTERPOLATION
+/***
+ * In Java, concatenating strings using a + operator, as we did in the previous line,
+ * is a very common operation. In Scala, a more elegant and efficient way to deal
+ * with the presentation os strings is a feature named `String Interpolation`.
+ * Avaialable since Scala Version 2,10,
+ * the new syntax involves prepending a `s` character.
+ *
+ * Eg:
+ * */
+
+val many = 10000.235
+val manyInWords = s"$many euros"
+manyInWords
+
+/***
+ * Any variable in scope can be processed and embedded in a string.
+ * Formatting can even be more precise by using an f interpolator instead of s.
+ *In that case, the syntax follows the same style as that of the `printf` method of other languages,
+ * where, for instance, `%4d` means a four-digit formatting or `%12.2f` means a floating point
+ * notation with exactly twelve digits before the comma and two afterwards:
+ *
+ * */
+
+val amount = f"$many%12.2f euros"
+amount
+
+/***
+ * Moreover, the String interpolation syntax enables us to embed the full evaluation
+ * of an expression, that is, a full block of code performing a calculation.
+ *
+ * */
+
+val amount = s"${many*2} euros"
+amount
+
+val printedAmount =
+  walletA map(money =>  s"${money.amount*2}  ${money.currency}")
+printedAmount
+
+//THE GROUP BY METHOD
+/***
+ * Another convenient operation is the groupBy method that transforms a collection
+ * into a Map collection:
+ * */
+
+val sortedWalletA = walletA groupBy(mon => mon.currency)
+sortedWalletA
+val sortedWalletB = walletB groupBy(_.currency)
+sortedWalletB
+
+//THE FOLD LEFT METHOD
+/***
+ * The foldLeft method propagates some state from one element to the next.
+ * For instance, to sum elements in a list, you need to accumulate them and keep track
+ * of the intermediate counter from one elements to the next:
+ * */
+
+val sumOfWalletA = walletA.foldLeft(0) {
+  (total, money) => total+money.amount} //this is like the reduce method in java lambda
+
+sumOfWalletA
+
+/***
+ * The value 0 given as the first argument to foldLeft is the initial value
+ * (which means total =0) when applying the function for the first List element).
+ *
+ * The (total, element) notation represents a Tuple2 pair.
+ *
+ * Note, however, that for summation, the Scala API provides a `sum` method, so the last
+ * statement could have been written as follows:
+ * */
+
+val sumOfWalletA = walletA.collect(money => money.amount).sum //collect as a list and call the sum function for a list
+sumOfWalletA
 
