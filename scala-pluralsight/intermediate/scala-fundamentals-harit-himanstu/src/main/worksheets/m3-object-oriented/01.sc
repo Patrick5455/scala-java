@@ -1,7 +1,6 @@
 /**
  * m3-object-oriented -> 01.sc
  * */
-
 class Employee(){
   var first: String =""
   var last: String = ""
