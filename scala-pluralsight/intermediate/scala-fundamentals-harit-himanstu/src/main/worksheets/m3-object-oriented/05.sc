@@ -11,6 +11,7 @@ class Employee(f:String, l:String, s:Int){
   def getStocks = stocks
 
   def awardMoreStocks(numberOfStocks:Int):Unit=stocks += numberOfStocks
+  // a method with a new type is also known as procedure
 
   override def toString: String = first+" "+last+" "+stocks
 }
@@ -23,3 +24,4 @@ bobMartin.getStocks
 
 bobMartin.awardMoreStocks(15)
 bobMartin.getStocks
+
