@@ -28,4 +28,8 @@ class Employee(f:String, l:String, s:Int){
     departmentCodeByName.getOrElse(key, "The department with such code does not exist")
     //similar to the use of optional in JAVA 8 to avoid null pointers
 
+  override def toString: String = first+" "+last+" "+stocks+" "
+
 }
+val bobMartin = new Employee("Bob", "Martin", 50)
+bobMartin.getDepartmentName("HR")
