@@ -3,15 +3,15 @@
  * */
 class Employee(f:String, l:String, s:Int){
 
-  private val departmentCodeByName: Map[String, String] = Map{
-    "HR" -> "Human Resources"
-    "ACT" -> "Accounts"
-    "R&D" -> "Research and Development"
-    "MKT" -> "Marketing"
-    "SLS" -> "Sales"
-    "OPS" -> "Operations"
+  private val departmentCodeByName: Map[String, String] = Map(
+    "HR" -> "Human Resources",
+    "ACT" -> "Accounts",
+    "R&D" -> "Research and Development",
+    "MKT" -> "Marketing",
+    "SLS" -> "Sales",
+    "OPS" -> "Operations",
+  )
 
-  }
 
   private val first:String = f
   private val last:String = l
@@ -32,4 +32,5 @@ class Employee(f:String, l:String, s:Int){
 
 }
 val bobMartin = new Employee("Bob", "Martin", 50)
-bobMartin.getDepartmentName("HR")
+bobMartin.getDepartmentName("R&D")
+
