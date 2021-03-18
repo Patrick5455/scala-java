@@ -3,6 +3,8 @@
  * */
 
 /**
+ * INHERITANCE:
+ *
  * An abstract class is s class that starts with the abstract
  * keyword.
  * The class has members which only contains declaration and
@@ -56,3 +58,25 @@ val rnDEmployee = new RnDEmployee("Patrick", "Ojunde")
 val marketEmployee = new MarketEmployee("Odole", "Letus")
 
 
+/**
+ * COMPOSITION:
+ *
+ * */
+
+abstract class Company{
+  val name:String
+  val numberOfEmployees:Int
+  val employees: Set[Employee]
+
+  override def toString: String = s"[Company Name: $name, No of employees: $numberOfEmployees]"
+}
+
+class PluralSight(n:String, es:Set[Employee]) extends Company{
+  override val name = n
+  override val numberOfEmployees = es.size
+  override val employees = es
+}
+
+val pluralSight = new PluralSight("PluralSight Inc",
+  Set(rnDEmployee, marketEmployee))
+printf("PluralSight No of Employees: %d%n", pluralSight.numberOfEmployees)
