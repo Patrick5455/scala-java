@@ -19,3 +19,4 @@ val calc = new Calculator
 calc.sumOfSquares(2, 3)
 calc.multiplyDoubles(3, 2)
 calc.divisionOfCubes(5, 2)
+
