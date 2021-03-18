@@ -60,6 +60,19 @@ bobMartin.getDepartmentName("R&D")
  * apply that can be used to create the new instance of the companion class without
  * using the new keyword. The apply method works like a `factory-constructor` method
  *
+ * Standalone Singleton Objects:
+ * We could create several utility functions
+ * and bundle them up under one Singleton object and use them directly
+ *
+ * example:
+ *
+ * object CompanyUtils{
+ *  def getOfficeLocations: Set[Location] = ???
+ *  def getSocialHandles: Set[SocialHandle] = ???
+ * }
+ * ??? is a special keyword to tell scala that we are going to add implementation later
+ * but if we call the method without adding the implementation, it throws an error
+ *
  * */
 
 
