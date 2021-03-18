@@ -1,5 +1,5 @@
 /**
- * m3-object-oriented -> 01.sc
+ * m3-object-oriented -> 08.sc
  * */
 
 class Employee(f: String, l:String, s:Int){
