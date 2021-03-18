@@ -33,4 +33,35 @@ class Employee(f:String, l:String, s:Int){
 }
 val bobMartin = new Employee("Bob", "Martin", 50)
 bobMartin.getDepartmentName("R&D")
+//the design of having to get a departmentName with a dependency on an instance of
+//employee is not a good design.
+//getDepartmentName should be a static method i.e belong to the class and
+//not the object of the class
+
+/**
+ *Singleton object are object that cannot be instantiated, i.e you cannot use a
+ * `new` keyword.
+ * - No instantiation
+ * - Just one in memory
+ * - Initialized on first access
+ *
+ * There are 2 primary usecases of singleton objects:
+ * 1. Companion objects
+ * 2. Standalone Singleton objects
+ *
+ * Companion Objects:
+ * They live in the same file of the class of the same name.
+ * They are called companion because of this.
+ *
+ * The Companion class and the companion object
+ * can see the private members of each other
+ *
+ * The companion object has a special method called
+ * apply that can be used to create the new instance of the companion class without
+ * using the new keyword. The apply method works like a `factory-constructor` method
+ *
+ * */
+
+
+
 
