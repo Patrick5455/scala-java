@@ -16,7 +16,7 @@ class Employee(f:String, l:String, s:Int){
   def getLastName = lastName
   def getStocks = stocks
 
-  override def toString: String = s"Employee Bio Data:\nFirst Name: $firstName\nLast Name: $lastName\nStocks Owned: $stocks%"
+  override def toString: String = s"Employee Bio Data\nFirst Name: $firstName\nLast Name: $lastName\nStocks Owned: $stocks%"
 
   def updateStocks(numberOfStocks:Int):Employee = {
     val updatedStocks = this.stocks+numberOfStocks
