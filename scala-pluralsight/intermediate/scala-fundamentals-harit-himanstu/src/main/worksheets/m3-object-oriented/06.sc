@@ -73,7 +73,18 @@ bobMartin.getDepartmentName("R&D")
  * ??? is a special keyword to tell scala that we are going to add implementation later
  * but if we call the method without adding the implementation, it throws an error
  *
+ * Another usecase of a singleton object is when you are defining the entry point to
+ * your application i.e using the main() method in an object
  * */
+
+object MyApplication{
+  def main(args: Array[String]): Unit = {
+    println("Entry point to the application :-> Application started")
+    args.foreach(println)
+  }
+}
+
+MyApplication.main(Array("Hello", "World"))
 
 
 
