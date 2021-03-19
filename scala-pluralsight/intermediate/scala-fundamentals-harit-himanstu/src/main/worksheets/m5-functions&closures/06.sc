@@ -6,13 +6,14 @@
  * It is called this way because the act of closing the function literal by capturing
  *the bindings of its free variables.
  *
- * 
+ *
  *
  * free and bound variable.*/
 
   /*if y is known, the compilation works*/
 var y:Int = 99 // free variable
-val sum = (x:Int) => x+y //x is bound variable
+val sum = (x:Int) => x+y  // this is a closure
+//x is bound variable
 
 sum(5)
 
