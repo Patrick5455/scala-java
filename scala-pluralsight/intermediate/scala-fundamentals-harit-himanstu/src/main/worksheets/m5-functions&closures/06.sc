@@ -6,6 +6,8 @@
  * It is called this way because the act of closing the function literal by capturing
  *the bindings of its free variables.
  *
+ * 
+ *
  * free and bound variable.*/
 
   /*if y is known, the compilation works*/
@@ -33,8 +35,10 @@ case25sum
 
 /*case 3: the free variable is a local variable of a function*/
 def multiplier(factor:Int) = (x:Int) => x * factor
-val double = multiplier(2)
-val triple = multiplier(3)
+//NB: multiplier returns a closure
 
-double(2)
-triple(2)
+val double = multiplier(2) //free variable
+val triple = multiplier(3) //free variable
+
+double(2) //bound variable
+triple(2) //bound variable
