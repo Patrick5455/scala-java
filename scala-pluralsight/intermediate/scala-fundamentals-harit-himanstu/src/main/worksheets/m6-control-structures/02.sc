@@ -17,7 +17,7 @@ class Task(private val value:String,
 
   override def toString: String = s"[P: $priority][S: $status] - $value"
 
-  }
+}
 object Task{
 
   def apply(value:String, priority: Priority, status: Status):Task={
@@ -46,21 +46,18 @@ val t7 = Task("Book accommodation for talk", medium, done)
 
 val tasks:Seq[Task] = Seq(t1, t2, t3, t4, t5, t6, t7)
 
-def getHighPriorityTasks:Seq[Task]={
-  tasks.filter(_.getPriority==high)
+def getTasksMatching(matcher: Task => Boolean) = { //passed in a predicate
+  tasks.filter(matcher)
 }
 
-def getLowPriorityTasks = {
-  tasks.filter(_.getPriority==low)
-}
+def isHighPriorityTask = (task :Task) => task.getPriority == high
+def isLowPriorityTask = (task :Task) => task.getPriority == low
+def isTaskInProgress = (task :Task) =>  task.getStatus == inProgress
 
-def getTasksInProgress = {
-  tasks.filter(_.getStatus == inProgress)
-}
 
-getHighPriorityTasks foreach println
-println("---------------------------")
-getLowPriorityTasks foreach println
-println("____________________________")
-getTasksInProgress foreach println
-println("______________________________")
+getTasksMatching(isHighPriorityTask) foreach println
+println("___________________________________________")
+getTasksMatching(isLowPriorityTask) foreach println
+println("___________________________________________")
+getTasksMatching(isTaskInProgress) foreach println
+println("___________________________________________")
