@@ -1,3 +1,7 @@
+/***
+ * CURRYING
+ * */
+
 /*function with no currying*/
 def multiplySimple(a:Int, b:Int) = a * b
 
