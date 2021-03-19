@@ -1,3 +1,11 @@
+/**
+ *Partially Applied Functions:
+ *
+ * Partially applied functions are functions which are not supplied some or all of the argument
+ *  depending on how many argument are missing, the caller calling the function, will supply the
+ *  remaining arguments and return the result
+ */
+
 def sum(a:Int, b:Int, c:Int) = a+b+c
 
 /*case 1: when all arguments are supplied*/
@@ -26,4 +34,6 @@ val s8 = sum _
 
 s7(1,2,3)
 s8(1,2,3)
+
+
 
